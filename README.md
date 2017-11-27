@@ -17,13 +17,19 @@ Getting Started
 
 1) Sign up for a Wasp account at [https://wasp.io](https://wasp.io/) for an API Key.
 
-2) Add the WaspLaravel package to your installation:
+2) Add your wasp project API key to your .env file:
+
+```
+WASP_API_KEY=[YOURAPIKEY]
+```
+
+3) Add the WaspLaravel package to your installation:
 
 ```
 composer require wasp/wasp-laravel
 ```
 
-3) Add the following to your app/Exceptions/Handler.php file:
+4) Add the following to your app/Exceptions/Handler.php file:
 
 ```php
 public function report(Exception $exception)
@@ -38,13 +44,11 @@ public function report(Exception $exception)
 
 ```
 
-4) Then publish the configuration file for easy access and to create the wasp.php configuration file in your app/config/ directory:
+5) Then publish the configuration file for easy access and to create the wasp.php configuration file in your app/config/ directory:
 
 ```bash 
 php artisan vendor:publish --provider='Wasp\WaspLaravel\WaspServiceProvider'
 ```
-
-5) 
 
 
 Frequently Asked Questions

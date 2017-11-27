@@ -1,55 +1,59 @@
 <?php
-/**
- * WaspServiceProvider.php
- *
- * @version 1.0
- * @date 11/26/17 11:26 PM
- * @package wasp-laravel
- */
 
-namespace Wasp\Reporting;
+namespace Wasp\WaspLaravel;
 
-use Illuminate\Container\Container;
 use Illuminate\Support\ServiceProvider;
 
 class WaspServiceProvider extends ServiceProvider
 {
-	/**
-	 * Bootstrap the application events.
-	 */
-	public function boot()
-	{
-		$this->publishes([
-			__DIR__.'/../config/wasp.php' => config_path( 'wasp.php' ),
-		] );
+    /**
+     * Bootstrap the application services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+        $this->publishes([
+            __DIR__ .'/../config/wasp.php' => config_path( 'wasp.php' )
+        ] );
 
-		//$this->mergeConfigFrom( __DIR__.'/../config/wasp.php', 'wasp' );
-	}
+        //$this->mergeConfigFrom( __DIR__.'/../config/wasp.php', 'wasp' );
+    }
+
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+        //$this->mergeConfigFrom( __DIR__ .'/../config/wasp.php', 'wasp' );
+
+        $this->publishes( [
+            __DIR__ .'/../config/wasp.php' => config_path( 'wasp.php' )
+        ]);
+
+        $this->app->singleton( 'wasp', function( $app ) {
+
+            $config = $app->config->get( 'wasp' );
+            $debug = $app->config->get( 'app.debug' );
+            if( $debug )
+            {
+                $api_key = $config['api_key'];
+                unset( $config['api_key'] );
+                return new WaspHandler( $api_key, $config );
+            }
+
+        } );
+
+        $this->app->alias( 'wasp', WaspHandler::class );
+    }
 
 
-	public function register()
-	{
-		$this->app->singleton( 'wasp', function (Container $app ) {
-
-			$config = $app->config->get( 'wasp' );
-			$debug = $app->config->get( 'app.debug' );
-			if( $debug )
-			{
-				$api_key = $config['api_key'];
-				unset( $config['api_key'] );
-				$client = new Wasp( $api_key, $config );
-				return $client;
-			}
-
-		} );
-
-		$this->app->alias( 'wasp', Wasp::class );
-	}
-
-
-	public function provides()
-	{
-		return [ 'wasp' ];
-	}
-
+    public function provides()
+    {
+        return [ 'wasp' ];
+    }
 }

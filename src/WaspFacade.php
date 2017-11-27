@@ -1,21 +1,22 @@
 <?php
 
 /**
- * Wasp.php
+ * WaspFacade.php
  *
  * @version 1.0
- * @date 11/27/17 5:26 AM
+ * @date 11/27/17 9:35 AM
  * @package wasp-laravel
  */
 
-namespace Wasp\Reporting\Facades;
+namespace Wasp\WaspLaravel;
 
 use Illuminate\Support\Facades\Facade;
 
-class Wasp extends Facade
+class WaspFacade extends Facade
 {
 	protected static function getFacadeAccessor()
 	{
 		return 'wasp';
 	}
+
 }

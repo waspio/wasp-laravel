@@ -1,15 +1,16 @@
 <?php
 /**
- * Wasp.php
+ * WaspHandler.php
  *
  * @version 1.0
- * @date 11/26/17 10:34 PM
- * @package wasp-laravel
+ * @date 11/27/17 9:30 AM
+ * @package samsung
  */
 
-namespace Wasp\Reporting;
+namespace Wasp\WaspLaravel;
 
-class Wasp
+
+class WaspHandler
 {
 	static $user_data = array();
 	private $timeout = 2;
@@ -1079,5 +1080,4 @@ class Wasp
 		$this->display_errors();
 	}
 	//end __destruct()
-
 }

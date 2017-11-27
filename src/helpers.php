@@ -3,18 +3,18 @@
  * helpers.php
  *
  * @version 1.0
- * @date 11/26/17 11:12 PM
- * @package wasp-laravel
+ * @date 11/27/17 9:30 AM
+ * @package samsung
  */
-use Wasp\Reporting\Wasp;
 
+use Wasp\WaspLaravel\WaspHandler;
 if( !function_exists( 'wasp' ) )
 {
 	/**
-	 * @return mixed
+	 * @return \Illuminate\Foundation\Application|mixed
 	 */
 	function wasp()
 	{
-		return app(Wasp::class);
+		return app( WaspHandler::class );
 	}
 }

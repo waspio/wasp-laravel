@@ -1,35 +1,41 @@
 {
-  "name":"wasp/wasp-laravel",
-  "type":"library",
-  "description":"Wasp automatically grabs all errors created by your application and notifies you in realtime using the Wasp.io web service.",
-  "version":"2.2.5",
-  "homepage":"https://wasp.io",
-  "authors":[
-    {
-      "name":"Wasp.io",
-      "homepage":"https://wasp.io"
-    }
-  ],
-  "require":{
-    "php":">=7.0.0",
-    "laravel/framework" : "5.5.*"
-  },
-  "autoload":{
-    "psr-4":{
-      "Wasp\\Reporting\\" : "src/"
+    "name": "wasp/wasp-laravel",
+    "description": "Wasp automatically grabs all errors created by your application and notifies you in realtime using the Wasp.io web service.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Wasp.io",
+            "email": "contact@wasp.io"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0.0"
     },
-    "files":[
-      "src/helpers.php"
-    ]
-  },
-  "extra":{
-    "laravel":{
-      "providers":[
-        "Wasp\\Reporting\\WaspServiceProvider"
-      ],
-      "aliases":{
-        "Wasp":"Wasp\\Reporting\\Wasp"
-      }
+    "autoload": {
+        "psr-4": {
+            "Wasp\\WaspLaravel\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wasp\\WaspLaravel\\WaspServiceProvider"
+            ],
+            "aliases": {
+                "Wasp": "Wasp\\WaspLaravel\\WaspFacade"
+            }
+        }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "@php artisan vendor:publish --provider=\"Wasp\\WaspLaravel\\WaspServiceProvider\""
+        ],
+        "post-install-cmd": [
+            "@php artisan vendor:publish --provider=\"Wasp\\WaspLaravel\\WaspServiceProvider\""
+        ]
     }
-  }
 }

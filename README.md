@@ -26,6 +26,6 @@ public function report(Exception $exception)
 Then publish the configuration file for easy access and to create the wasp.php configuration file in your app/config/ directory:
 
 ```bash
-php artisan vendor:publish --provider='Wasp\Reporting\WaspServiceProvider'
+php artisan vendor:publish --provider='Wasp\\WaspLaravel\\WaspServiceProvider'
 
 ```

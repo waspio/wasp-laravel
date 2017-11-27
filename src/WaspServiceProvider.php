@@ -17,8 +17,6 @@ class WaspServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ .'/../config/wasp.php' => config_path( 'wasp.php' )
         ] );
-
-        //$this->mergeConfigFrom( __DIR__.'/../config/wasp.php', 'wasp' );
     }
 
     /**
@@ -28,12 +26,6 @@ class WaspServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
-        //$this->mergeConfigFrom( __DIR__ .'/../config/wasp.php', 'wasp' );
-
-        $this->publishes( [
-            __DIR__ .'/../config/wasp.php' => config_path( 'wasp.php' )
-        ]);
 
         $this->app->singleton( 'wasp', function( $app ) {
 

@@ -29,12 +29,12 @@ class WaspServiceProvider extends ServiceProvider
      */
     public function register()
     {
-
-        $this->app->singleton( WaspHandler::class, function() {
+        $this->mergeConfigFrom( __DIR__ .'/../config/wasp.php', 'wasp' );
+        $this->app->singleton( WaspHandler::class, function( $app ) {
 
             $config = $app->config->get( 'wasp' );
             $debug = $app->config->get( 'app.debug' );
-            if( $debug )
+            if( $debug && isset( $config['api_key'] ) )
             {
                 $api_key = $config['api_key'];
                 unset( $config['api_key'] );

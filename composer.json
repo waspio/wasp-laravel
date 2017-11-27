@@ -2,6 +2,7 @@
     "name": "wasp/wasp-laravel",
     "description": "Wasp automatically grabs all errors created by your application and notifies you in realtime using the Wasp.io web service.",
     "type": "library",
+	"version": "2.2.5", 
     "authors": [
         {
             "name": "Wasp.io",

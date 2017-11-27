@@ -21,7 +21,7 @@ return [
 
 	'close' => '',
 
-	'code' => false,
+	'code' => true,
 
 	'ignore' => array(),
 

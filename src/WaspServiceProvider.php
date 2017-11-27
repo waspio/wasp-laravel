@@ -27,7 +27,7 @@ class WaspServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->singleton( 'wasp', function( $app ) {
+        $this->app->singleton( WaspHandler::class, function( $app ) {
 
             $config = $app->config->get( 'wasp' );
             $debug = $app->config->get( 'app.debug' );
@@ -40,7 +40,7 @@ class WaspServiceProvider extends ServiceProvider
 
         } );
 
-        $this->app->alias( 'wasp', WaspHandler::class );
+        $this->app->alias( WaspHandler::class, 'wasp' );
     }
 
 

@@ -14,13 +14,16 @@
     },
     "autoload": {
         "psr-4": {
-            "Wasp\\WaspLaravel\\": "src"
+            "Wasp\\WaspLaravel\\": "src/"
         },
         "files": [
             "src/helpers.php"
         ]
     },
-    "extra": {
+	"extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
         "laravel": {
             "providers": [
                 "Wasp\\WaspLaravel\\WaspServiceProvider"
@@ -29,13 +32,5 @@
                 "Wasp": "Wasp\\WaspLaravel\\WaspFacade"
             }
         }
-    },
-    "scripts": {
-        "post-update-cmd": [
-            "@php artisan vendor:publish --provider=\"Wasp\\WaspLaravel\\WaspServiceProvider\""
-        ],
-        "post-install-cmd": [
-            "@php artisan vendor:publish --provider=\"Wasp\\WaspLaravel\\WaspServiceProvider\""
-        ]
     }
 }

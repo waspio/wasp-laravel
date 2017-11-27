@@ -6,6 +6,9 @@ use Illuminate\Support\ServiceProvider;
 
 class WaspServiceProvider extends ServiceProvider
 {
+	
+	protected $defer = false;
+	
     /**
      * Bootstrap the application services.
      *
@@ -16,7 +19,7 @@ class WaspServiceProvider extends ServiceProvider
         //
         $this->publishes([
             __DIR__ .'/../config/wasp.php' => config_path( 'wasp.php' )
-        ] );
+        ], 'config' );
     }
 
     /**
@@ -27,7 +30,7 @@ class WaspServiceProvider extends ServiceProvider
     public function register()
     {
 
-        $this->app->singleton( WaspHandler::class, function( $app ) {
+        $this->app->singleton( WaspHandler::class, function() {
 
             $config = $app->config->get( 'wasp' );
             $debug = $app->config->get( 'app.debug' );
@@ -46,6 +49,14 @@ class WaspServiceProvider extends ServiceProvider
 
     public function provides()
     {
-        return [ 'wasp' ];
+        return [ 'wasp', WaspHandler::class ];
     }
+	
+	
+	protected function publishConfig()
+	{
+        $this->publishes([
+            __DIR__ .'/../config/wasp.php' => config_path( 'wasp.php' )
+        ], 'config' );
+	}
 }

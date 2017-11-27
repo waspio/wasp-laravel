@@ -16,7 +16,7 @@ class WaspFacade extends Facade
 {
 	protected static function getFacadeAccessor()
 	{
-		return 'wasp';
+		return WaspHandler::class;
 	}
 
 }

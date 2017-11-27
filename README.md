@@ -67,6 +67,7 @@ Errors slow down, and can take down your websites, and often the only notificati
 Error details are sent to the Wasp API (all things Waspside are SSL only for security) for filtering, notification, and management through your user account.  Since debugging is already a task, Wasp sends as much information as possible including full stacktrace information, browser information, the code where an error was generated, and user email, user name, and user ID of logged in users if applicable.
 
 
+
 Changelog
 ---------
 

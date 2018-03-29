@@ -71,6 +71,9 @@ Error details are sent to the Wasp API (all things Waspside are SSL only for sec
 Changelog
 ---------
 
+### 2.2.6
+* Remove explicit requirement for \Exception in exception handler
+
 ### 2.2.5
 * Initial commits for Laravel specific installs
 

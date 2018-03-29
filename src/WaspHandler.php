@@ -697,16 +697,16 @@ class WaspHandler
 	 * Custom exception handler
 	 * Makes subsequent calls to log_custom_error
 	 * @access public
-	 * @param \Exception $e
+	 * @param $e
 	 */
-	public function exception_handler( \Exception $e )
+	public function exception_handler( $e )
 	{
 		$trace_path = $this->clean_tracepath( is_object( $e ) ? $e : debug_backtrace() );
 
 		$error = array(
 			'message' => $e->getMessage(),
 			'generated' => $this->right_now(),
-			'severity' => ( $e instanceof \ErrorException ) ? $e->getSeverity() : $this->error_levels['Exception'],
+			'severity' => ( $e instanceof \ErrorException || $e instanceof \ParseError) ? $e->getSeverity() : $this->error_levels['Exception'],
 			'file' => $e->getFile(),
 			'line' => $e->getLine(),
 			'context' => $trace_path
